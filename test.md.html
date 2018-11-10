@@ -1,0 +1,374 @@
+Markdeep Feature Demo**
+                           Morgan McGuire
+
+			   This demonstration documents the features of
+			   [Markdeep](http://casual-effects.com/markdeep) and acts as a test for
+			   it.  Markdeep is a text formatting syntax that extends Markdown, and a
+			   Javascript program for making it work in browsers. The two most
+			   powerful features are its ability to run in any **web browser** on the
+			   client side and the inclusion of **diagrams**.
+
+			   [Click here](https://casual-effects.com/markdeep/features.md.html?noformat)
+			   to see this document without automatic formatting.
+
+			   Markdeep is free and easy to use. It doesn't need a plugin, or
+			   Internet connection. There's nothing to install. Just start
+			   writing in Vi, Nodepad, Zed, Emacs, Visual Studio, Atom, or another
+			   editor! You don't have to export, compile, or otherwise process
+			   your document.
+
+			   If you want to support development of Markdeep, just buy my
+			   [Graphics Codex](http://graphicscodex.com) book for $10 on Amazon. Revenue from that funds my
+			   open source projects.
+
+			   Basic Formatting
+			   =======================================================================================
+			   Text formatting: 
+
+			       Source                               |     Result
+			       -----------------------------------------|------------------------------
+			       `**bold**`                               | **bold**
+			       `__bold__`                               | __bold__
+			       `*italic*`                               | *italic*
+			       `_italic_`                               | _italic_
+			       `~~strikethrough~~`                      | ~~strikethrough~~
+			       <code>`inline code`</code>               | `inline code`
+			       `5 kg/m^3`                               | 5 kg/m^3
+
+			       You can add CSS to change the styles. See the Custom Formatting section
+			       for some examples.
+
+			       Formatted text may **cross
+			       lines** and be as small as **a** single character. It can _also
+			         be indented and
+				   split across lines_ simultaneously.
+
+				   Markdeep intelligently does not apply bold or italic formatting to
+				   math expressions such as x = 3 * y - 2 * z or WORDS_WITH_INTERNAL_UNDERSCORES.
+				   It also protects HTML `<tags>` in code blocks from disappearing.
+
+				   If you _want_ italics or bold inside of a word, for example in: SCUBA = <b>S</b>elf <b>C</b>ontained
+				   <b>U</b>nderwater <b>B</b>reathing <b>A</b>pparatus, then just use HTML `<b>` and `<i>`
+						   tags---a markdown syntax won't be any more readable in that case.
+
+						   Exponents only work for positive and negative integers. For arbitrary exponents,
+						   use LaTeX notation: `$x^y$` ==> $x^y$, or HTML tags: `x<sup>y</sup>` ==> x<sup>y</sup>.
+
+						   Links
+						   ---------------------------------------------------------------------------------------
+						   There are many forms of implicit and explicit links:
+
+
+						            Source                            |   Result
+							    -------------------------------------------|---------------------------------------------
+							    `[hyperlink](http://casual-effects.com)`   | [hyperlink](http://casual-effects.com)
+							    `[hyperlink]("http://casual-effects.com")` | [hyperlink]("http://casual-effects.com")
+							    `<http://casual-effects.com>`              | <http://casual-effects.com> 
+							    `http://casual-effects.com`                | http://casual-effects.com
+							    `morgan@casual-effects.com`                | morgan@casual-effects.com
+							    `test@foo.co.uk`                           | test@foo.co.uk
+							    `<test@foo.co.uk>`                         | <test@foo.co.uk>
+							    `Lists section`                            | Lists section
+							    `Tiny Grids subsection`                    | Tiny Grids subsection
+							    `Section [Lists]`                          | Section [Lists]
+							    `sec. [lists]`                             | sec. [lists]
+							    `subsection [lists]`                       | subsection [lists]
+							    `table [states]`                           | table [states]
+							    `tbl. [states]`                            | tbl. [states]
+							    `Table [states]`                           | Table [states]
+							    `figure [robot]`                           | figure [robot]
+							    `fig. [robot]`                             | fig. [robot]
+							    `Figure [robot]`                           | Figure [robot]
+							    `lst. [sort]`                              | lst. [sort]
+							    `listing [sort]`                           | listing [sort]
+							    `Listing [sort]`                           | Listing [sort]
+							    `[New York Times][nyt]`                    | [New York Times][nyt]
+							    `[Google][]`                               | [Google][]
+							    `footnote [^syntax]`                       | footnote [^syntax]
+							    `[#Kajiya86]`                              | [#Kajiya86]
+
+							    Any section header name followed by "section", "subsection", or "sec." will automatically be
+							    linked to that section. To link by number, use one of those key words followed by the section
+							    name in brackets. This won't work if you use the actual word "section" _a bullets:
+							    - Bread
+							    - Fish
+							    - Milk
+							    - Cheese
+
+
+							    A  list containing a code block:
+
+							    1. This is the first list item.
+
+							       ~~~~~~
+							          // This is a code block
+								     if (x > 0) printf("hello!\n");
+								        ~~~~~~
+									   
+									1. This is the second list item.
+
+
+									- Level 1
+									 - Level 2
+									   - Level 3
+									   - Level 1 again
+
+
+									   - 1
+									    - 1.a
+									      - 1.a.i
+									        - 1.a.ii
+										 - 1.b
+
+										 Lists can also:
+
+										 * Use asterisks
+										 * Instead of
+										 * Minus signs
+										 * `or have code`
+										 * *and* other formatting
+
+										 or
+
+										 + Use plus
+										 +  ut neque sed, commodo
+										 > dignissim orci. Curabitur quis velit gravida, blandit diam nec,
+										 > lacinia quam. Maecenas pharetra, velit in vestibulum auctor, diam
+										 > ipsum suscipit arcu, non sodales orci nibh sit amet leo. Nulla dictum
+
+										 Blockquotes formatted 0)
+
+
+										 Reference Images
+										 ----------------------------------------------------------------
+
+										 Markdeep introduces a new feature called "reference images". These have several nice properties:
+
+										 * Put long image URLs elsewhere in the document for clarity
+										 * Indirection so that multiple images can reference a symbolic URL
+										 * Embed [base64 encoded images as data URIs](https://www.base64-iyvCgZ1ApJhMAAw67jS4xSV1bIP5VO55KLrUWclK7soif528HhTvdeEAJg2S7fUhRMyY1IwEOYSGdZBidUVc1zlxqbWfFg8xEi8V87gEXuV2Zn84xUlsQ9Dh0mfYAqXyhkDWMHey2jssVXZ6Kplw8M7+PPHvQzTSFuOcnPADKwxPKUR9LAi6dRYEXANjOCwCnU1M/w3448EG+XwHnl3XzcP2wWz8UaKq6xIkAOUFGCUw/oEZbkCiMUGlmzwvIfyF884BrHS1juLDb1pfl4q0fBCcA5KBhiC6A5fNcPHjrxEH0H6472QPCZbzDs91DA4UnRxhx7uTKsURAy74moDuVK5hP7beEA5PgN+bNy7TVMlLp7m5dDw7Q0XQQGCBJMnuahN4BQgFQN8bRtVgJ+PCyKwxXf4Knu9Uf3QEwjufYuFyQ07UAwHjxwAMYH are automatically detected and will embed a small video
+										 player:
+
+										      ![A video](rocket.mp4)
+
+
+										      URLs for Youtube and Vimeo videos will also automatically embed a video player:
+
+										      ![State Zero](https://www.youtube.com/watch?v=QgPMyvZMBY0)
+
+										      ![Figure [fig:bof large inline code
+										      blocks. Both styles receive syntax coloring and automatic programming
+										      language detection.
+
+										      You can override automatic programming language detection by putting
+										      the name Code###
+										      #### Summary ####
+
+										      Less-than and greater-than signs (`<` and `>`) do not need to be escaped in diagrams or code
+										      as long as they do not appear immediately adjacent to a letter. Usua-----------------'                                                  |   |                   *
+										      *                       Round                                       *---(-. |                   '------------'  |  *
+										      *          /\                                                               *---------------'   *
+										      *************************************************************************************************
+
+										      Graph with Large Nodes
+										      -------------------------------------------------------------------------* * *      o o o o   * * * *  *
+										      *   o--*    *--*    v  v   ^  ^   | | | |   | | | |    \ \ \ \   \ \ \ \    / / / /   / / / /   *
+										      *   o-->    *-->   *  o   /  /    o * v '   o * v '     o * v \   o * v \  o * v /   o * v /    *
+										      *   o---    *---                     / \                                          *
+										      *                                    |            /___\                                         *
+										      *                                    |              |                                                | |   |   |   | |   |   |   | |           | |   |   |   |      *
+										      *       '---------'   '--+---+--'   '--+---+--'   '--|   |--'   '--+   +--'   '--|------'       *
+										      *          |   |         |   |         |   |         |   |         |   |         |   |          *
+										      *           '-'           '-'           '-'     o  * * * * *  * * o o *    o o o      * * *      o o o     · * · · ·     · · ·       *
+										      *  o o o o o  * * * * *  o o o o *   o o o o    * * * *    * o * *    · * * · ·    · · · ·      *
+										      *  o o o o o  * * * * *  o * o o o  o o o o o  * * *       \        +-'               /   \         *
+										      *  5       6      +z              v1 *------------------* v2    |           ~~~~~~~~~~
+
+										      Example:
+
+										      -----
+
+										      - - -
+
+										      _____
+
+										      _ _ _
+
+										      *****
+
+										      * * *
+
+										      Embedded Math
+										      ========================
+
+										      Markdeep automatically includes [MathJax](http://mathjax.org) if your
+										      document contains equations and you have an Internet connection. That means
+										      you get the **full power of LaTeX, TeX, MathML, and AsciiMath not〕
+										      - Greek ΑΒΓΔ ΕΖΗΘ ΙΚΛΜ ΝΞΟΠ ΡΣΤΥ ΦΧ**Markdeep Feature Demo**
+										                                 Morgan McGuire
+
+														 This demonstration documents the features of
+														 [Markdeep](http://casual-effects.com/markdeep) and acts as a test for
+														 it.  Markdeep is a text formatting syntax that extends Markdown, and a
+														 Javascript program for making it work in browsers. The two most
+														 powerful features are its ability to run in any **web browser** on the
+														 client side and the inclusion of **diagrams**.
+
+														 [Click here](https://casual-effects.com/markdeep/features.md.html?noformat)
+														 to see this document without automatic formatting.
+
+														 Markdeep is free and easy to use. It doesn't need a plugin, or
+														 Internet connection. There's nothing to install. Just start
+														 writing in Vi, Nodepad, Zed, Emacs, Visual Studio, Atom, or another
+														 editor! You don't have to export, compile, or otherwise process
+														 your document.
+
+														 If you want to support development of Markdeep, just buy my
+														 [Graphics Codex](http://graphicscodex.com) book for $10 on Amazon. Revenue from that funds my
+														 open source projects.
+
+														 Basic Formatting
+														 =======================================================================================
+														 Text formatting: 
+
+														     Source                               |     Result
+														     -----------------------------------------|------------------------------
+														     `**bold**`                               | **bold**
+														     `__bold__`                               | __bold__
+														     `*italic*`                               | *italic*
+														     `_italic_`                               | _italic_
+														     `~~strikethrough~~`                      | ~~strikethrough~~
+														     <code>`inline code`</code>               | `inline code`
+														     `5 kg/m^3`                               | 5 kg/m^3
+
+														     You can add CSS to change the styles. See the Custom Formatting section
+														     for some examples.
+
+														     Formatted text may **cross
+														     lines** and be as small as **a** single character. It can _also
+														       be indented and
+														         split across lines_ simultaneously.
+
+															 Markdeep intelligently does not apply bold or italic formatting to
+															 math expressions such as x = 3 * y - 2 * z or WORDS_WITH_INTERNAL_UNDERSCORES.
+															 It also protects HTML `<tags>` in code blocks from disappearing.
+
+															 If you _want_ italics or bold inside of a word, for example in: SCUBA = <b>S</b>elf <b>C</b>ontained
+															 <b>U</b>nderwater <b>B</b>reathing <b>A</b>pparatus, then just use HTML `<b>` and `<i>`
+																	 tags---a markdown syntax won't be any more readable in that case.
+
+																	 Exponents only work for positive and negative integers. For arbitrary exponents,
+																	 use LaTeX notation: `$x^y$` ==> $x^y$, or HTML tags: `x<sup>y</sup>` ==> x<sup>y</sup>.
+
+																	 Links
+																	 ---------------------------------------------------------------------------------------
+																	 There are many forms of implicit and explicit links:
+
+
+																	          Source                            |   Result
+																		  -------------------------------------------|---------------------------------------------
+																		  `[hyperlink](http://casual-effects.com)`   | [hyperlink](http://casual-effects.com)
+																		  `[hyperlink]("http://casual-effects.com")` | [hyperlink]("http://casual-effects.com")
+																		  `<http://casual-effects.com>`              | <http://casual-effects.com> 
+																		  `http://casual-effects.com`                | http://casual-effects.com
+																		  `morgan@casual-effects.com`                | morgan@casual-effects.com
+																		  `test@foo.co.uk`                           | test@foo.co.uk
+																		  `<test@foo.co.uk>`                         | <test@foo.co.uk>
+																		  `Lists section`                            | Lists section
+																		  `Tiny Grids subsection`                    | Tiny Grids subsection
+																		  `Section [Lists]`                          | Section [Lists]
+																		  `sec. [lists]`                             | sec. [lists]
+																		  `subsection [lists]`                       | subsection [lists]
+																		  `table [states]`                           | table [states]
+																		  `tbl. [states]`                            | tbl. [states]
+																		  `Table [states]`                           | Table [states]
+																		  `figure [robot]`                           | figure [robot]
+																		  `fig. [robot]`                             | fig. [robot]
+																		  `Figure [robot]`                           | Figure [robot]
+																		  `lst. [sort]`                              | lst. [sort]
+																		  `listing [sort]`                           | listing [sort]
+																		  `Listing [sort]`                           | Listing [sort]
+																		  `[New York Times][nyt]`                    | [New York Times][nyt]
+																		  `[Google][]`                               | [Google][]
+																		  `footnote [^syntax]`                       | footnote [^syntax]
+																		  `[#Kajiya86]`                              | [#Kajiya86]
+
+																		  Any section header name followed by "section", "subsection",- Bullets                                        *   D      E     F      G   *
+																		    - Bullets                                        *****************************
+																		    4. Thursday
+																		    5. Friday
+
+
+																		    A list with just bullets:
+																		    - Bread
+																		    - Fish
+																		    - Milk
+																		    - Cheese
+
+
+																		    A  list cclude the name of a day of the week
+																		    (e.g., Sunday). It will be replaced with the correct day.
+
+																		    When months are given by name, they must match the localization
+																		    settings.
+
+
+																		    Block Quotes
+																		    -------------------------------------------------------------------- `![](robot.jpg)` becomes:
+
+																		    ![](robot.jpg)
+
+																		    Images are centered if they appear in their own paragraph block and inlined otherwise. Grids of
+																		    images are recognized and laid out as grids using HTML tables:
+
+
+																		    ![1](robot.jpg width=100) ![2](robot.jpg width=gVKuYRI5BwjIsqTWT8hzUn07AE+RJBLDmaUz0GSyLQDgQDLEr1NwuABQqATp9Gsf91lmQr2F/F9cAvgEc6yFElYuyHUtD0BkBv9HgBCR8BUrp8ws6n/g7wLURgVUEztOFqx/OzBpYaG3hMgqFOD8k3wrKLmLgXYZm8BM5rvn87iAktYdwajMik6aS6qGm4z4Am2lZFanKYpftipYO7DA4Bn+GE340nmRVTs/m+rMXQarYqercVQQKnX7x1oi6qSVaFPU7zLTRks5hh0XvklB+8engKdbl7U2LWlKYqB+jnd6nM9UblYXzcIItdRSLkZOv9LpDeFqSy7mvkHgOp9AiWqwRsb+QGrpFoA5xO7vl4xdYKAHBGgqMpxQAJ9kroYmaPkaWpOM8f8owkFqOZOejUVl33fmyijyJ0qrnrThBwIB+ciBWyJEmvFTGB2TkzdFK4U2ycn7/hJ68LC7gcq23/7h7X7WwBXUQCuiR2x9nKshN1OhRlsdhwqZ5Mpqqpgnsuojjy00yeeAIQ/WthUGwZTy39hNuUOAlOY1LN0luAEJDRkuJ653Xxmre.
+
+																		    !!! note
+																		        Another note.
+
+																			!!! Tip
+																			    Close the door on the way out.
+
+																			    !!! WARNING
+																			        I'm a warning, perhaps. *Somethincode>~~~~~~~~~~~~~~ none output</code>
+																			[1, 2, 3, 4, 5]
+																			<code>~~~~~~~~~~~~~</code>
+																			[This listing combines multiple code blocks to show the input and output of an interactive section.]
+																			</pre> text will remain in place for     * | Security|  |  File   | *
+																			use as ASCII art. Thus, the diagram is rarely       * | Policy  +->| Manager | *
+																			distored by the beautification process.     ---------------------------------------
+																			**************************************************************************************                                             *
+																			*        v                             |                                                        *
+																			*  .-----------.                 .-----+----    __|__                         *
+																			*                             ___    ___  |  |   | ) *
+																			* /    \   / \  \   /  .-.    .   ' .  |   |   .---. .---.     |     |  /   \  |   | '--'   ''  *
+																			----------------------
+
+																			*************************************************************************************************
+																			* ┄┄┄┄┄┄┄┄┄┄▶
+																			*                 :<----->:           
+																			*        ▲          500ms :           
+																			*        ┊                :           
+																			*Cpu.Qon ┊┄┄┄┄┄┄┄┄            Tablet 1         Dedicated Server Rack    *
+																			*************************************************************************************************
+
+
+																			Styling Diagrams
+																			----------------#### H5
+																			###### H6
+																			Although: do you really need six levels of subsection nesting?!
+
+																			You can also create unnumbered sections that will not appear in the
+																			table of contents using parentheses ar
+																			  margin-left: -50px;
+																			    width: 50px;
+																			      height: 0px;
+																			        overflow: visible;
+																				  font-size: 70%;
+																				    display: block;
+																				      color: #666;
+																				      }for including one document within another. This is convenient for bibliographies,
+																				      boilerplate footers and headers, and styling. The syntax is:
+
+																				      <center>`(insert otherdocument.md.html here)`
